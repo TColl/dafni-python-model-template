@@ -1,0 +1,22 @@
+{
+    "full_name": "Jane Doe",
+    "email": "jane.doe@stfc.ac.uk",
+    "github_account": "username",
+    "model_name": "Awesome DAFNI Model",
+    "image_name": "{{cookiecutter.model_name.lower().replace(' ', '-').replace('_', '-')}}",
+    "model_summary": "Models awesomeness on DAFNI using python.",
+    "home_page": "https://github.com/{{cookiecutter.github_account}}/{{cookiecutter.image_name}}",
+    "python_version": 3.9,
+    "license": [
+      "MIT license",
+      "BSD license",
+      "ISC license",
+      "Apache Software License 2.0",
+      "GNU General Public License v3",
+      "All rights reserved"
+    ],
+    "include_pre_commit": [
+      "Yes",
+      "No"
+    ]
+  }

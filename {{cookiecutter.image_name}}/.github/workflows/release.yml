@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish-model:
+    name: Publish Model
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get tag ID
+        id: get_tag
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+      - name: Export and compress model image
+        run: make build
+
+      - name: Upload image to DAFNI
+        uses: dafnifacility/dafni-model-uploader@v1.6
+        with:
+          definition-path: "./model_definition.yaml"
+          image-path: "./build/{{cookiecutter.image_name}}.tar.gz"
+          username: {{ "${{ secrets.DAFNI_USERNAME }}" }}
+          password: {{ "${{ secrets.DAFNI_PASSWORD }}" }}
+          version-message: >
+            "{{ "${{ steps.get_tag.outputs.VERSION }} - uploaded from GitHub workflow" }}"

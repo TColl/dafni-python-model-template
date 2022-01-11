@@ -1,0 +1,48 @@
+---
+kind: Model
+api_version: v1beta1
+
+metadata:
+  display_name: {{cookiecutter.model_name}}
+  name: {{cookiecutter.image_name}}
+  summary: {{cookiecutter.model_summary}}
+  publisher: {{cookiecutter.full_name}}
+  source_code: {{cookiecutter.home_page}}
+  description: >
+    To be replaced with a longer explanation about the model,
+    what it does, what it doesn't etc.
+
+spec:
+  inputs:
+    parameters:
+
+      - name: SIM_NAME
+        title: Simulation name
+        description: Name of simulation
+        required: true
+        type: string
+        default: Test
+
+    dataslots:
+      - name: Input file 1
+        path: inputs/some_directory
+        default:
+          - 00000000-0000-0000-0000-000000000000
+        required: true
+        description: >
+          First (and required) input file.
+          Add a local copy in `data/inputs/some_directory` for local testing.
+
+      - name: Input file 2
+        path: inputs
+        required: false
+        description: >
+          Optional second input file.
+          A copy of this should be included within `data/inputs` for local testing.
+
+  outputs:
+    datasets:
+      - name: model outputs
+        summary: the hotly-anticipated results of our model
+        description: >
+          Copy of everything from `/data/outputs` - or something more specific.
