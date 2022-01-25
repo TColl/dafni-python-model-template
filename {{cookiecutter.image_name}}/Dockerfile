@@ -10,7 +10,8 @@ RUN pip install --no-compile --no-cache-dir --upgrade pip \
             \( -type d -name __pycache__ \) \
             -o \
             \( -type f -a \( -name '*.pyc' -o -name '*.pyo' -o -name '*.whl' \) \) \
-        \) -exec rm -rfv '{}' +
+        \) -exec rm -rfv '{}' + \
+    || true
 
 COPY src/ src
 CMD ["python3", "src/run.py"]
